@@ -4,10 +4,8 @@ import './index.css';
 class Home extends Component{
     render() {
         return(
-            <div>
-                Home
-                <button className="btn btn-primary">test</button>
-                {/*<i className="icon-user"/>*/}
+            <div id="page-wrapper">
+                <button className="btn btn-primary">Home</button>
             </div>
         );
     }
