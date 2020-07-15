@@ -350,13 +350,14 @@ footer p{
     background: #32323a;
 }
 .navbar-brand b{
+    margin-right: 5px;
     color: #2DAFCB;
 }
 .top-navbar .nav > li {
     position: relative;
     display: inline-block;
     margin: 0px;
-    padding: 0px;
+    padding: 0px 10px;
 }
 .top-navbar .nav > li > a {
     position: relative;
@@ -369,6 +370,9 @@ footer p{
     text-decoration: none;
     color: #319DB5 !important;
     background: transparent;
+}
+.dropdown-menu >li > a{
+    cursor: pointer;
 }
 .top-navbar .dropdown-menu{
     min-width: 230px;
@@ -420,6 +424,7 @@ footer p{
 .nav-second-level li,
 .nav-third-level li {
     border-bottom: none !important;
+    line-height: 50px;
 }
 
 .nav-second-level li a {
@@ -439,7 +444,8 @@ footer p{
     color: #B5B5B5;
     background:transparent;
     text-shadow:none;
-
+    display: block;
+    text-decoration: none;
 }
 .sidebar-collapse > .nav > li > a {
     padding: 12px 10px;
@@ -451,6 +457,7 @@ footer p{
 }
 ul.nav.nav-second-level.collapse.in {
     background: #17191B;
+    display: block;
 }
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
@@ -463,13 +470,23 @@ ul.nav.nav-second-level.collapse.in {
     /*background-color: transparent;*/
 
 }
+.dropdown-toggle::after{
+    display: none;
+}
 .top-navbar {
     background: #fff;
     border-bottom:none;
     padding: 0;
 }
+.top-navbar .nav > li:hover .dropdown-menu{
+    display: block;
+}
 .top-navbar .nav > li > a > i {
     margin-right: 2px;
+}
+.top-navbar .nav > li > a > span {
+    color: #666;
+    margin-right: 5px;
 }
 .top-navbar .navbar-brand:hover {
     color: #2DAFCB;
