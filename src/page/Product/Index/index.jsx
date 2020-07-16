@@ -1,15 +1,15 @@
 import React,{Component} from "react";
-import PageTitle from "../../component/PageTitle";
+import PageTitle from "../../../component/PageTitle";
 import {Link} from 'react-router-dom';
-import Pagination from "../../util/pagination";
-import HMUtil from '../../util/hm.jsx';
-import User from "../../service/user-service";
+import Pagination from "../../../util/pagination";
+import HMUtil from '../../../util/hm.jsx';
+import Product from "../../../service/product-service";
 
 const hm = new HMUtil();
-const user = new User();
+const user = new Product();
 
 
-class UserList extends Component{
+class ProductList extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -20,11 +20,11 @@ class UserList extends Component{
     }
 
     componentDidMount() {
-        this.loadUserList();
+        this.loadProductList();
     }
 
-    loadUserList = () => {
-        user.getUserList(this.state.pageNum).then((res)=>{
+    loadProductList = () => {
+        user.getProductList(this.state.pageNum).then((res)=>{
             this.setState(res,()=>{
                 this.setState({
                     firstLoading:false
@@ -71,21 +71,21 @@ class UserList extends Component{
         let tableBody = this.state.list.length ? listBody : listError;
         return(
             <div id="page-wrapper">
-                <PageTitle title="User List"/>
+                <PageTitle title="Product List"/>
                 <div className="row">
                     <div className="col-md-12">
                         <table className="table table-striped table-border">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Register Time</th>
-                                </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Register Time</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                { tableBody }
+                            {}
                             </tbody>
                         </table>
                     </div>
@@ -101,4 +101,4 @@ class UserList extends Component{
 
 }
 
-export default UserList;
+export default ProductList;

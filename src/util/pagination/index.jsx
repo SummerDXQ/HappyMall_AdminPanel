@@ -11,7 +11,6 @@ class Pagination extends Component{
         return (
             <div className="row">
                 <div className="col-md-12">
-                    {/*current = {this.props.current}*/}
                     <RcPagination
                         {...this.props}
                         hideOnSinglePage

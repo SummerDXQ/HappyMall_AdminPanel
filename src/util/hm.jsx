@@ -12,8 +12,7 @@ class HMUtil {
                     if(res.status === 0){
                         resolve(res.data,res.msg);
                     }else if(res.status === 10){
-                        console.log('没登录')
-                         // this.doLogin();
+                         this.doLogin();
                     }else {
                         reject(res.msg || res.data);
                     }
