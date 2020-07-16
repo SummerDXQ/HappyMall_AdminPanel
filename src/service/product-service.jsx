@@ -7,10 +7,19 @@ class Product {
     getProductList(pageNum){
         return hm.request({
             type : "post",
-            url  : 'http://admintest.happymmall.com/manage/product/list.do',
+            url  : '/manage/product/list.do',
             data : {
                 pageNum : pageNum
             }
+        })
+    }
+
+    // change product status
+    setProductStatus(productInfo){
+        return hm.request({
+            type : "post",
+            url  : '/manage/product/set_sale_status.do',
+            data : productInfo
         })
     }
 }

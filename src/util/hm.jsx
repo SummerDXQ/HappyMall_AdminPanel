@@ -35,10 +35,14 @@ class HMUtil {
             result = queryString.match(reg);
         return result ? result[2] : null;
     }
+    // success tips
+    successTips = (successMsg) => {
+        alert(successMsg || 'Successfully operate!');
+    }
 
     // error tips
     errorTips = (errMsg) => {
-        alert(errMsg || 'Something wrong!')
+        alert(errMsg || 'Something wrong!');
     }
 
     // set local storage

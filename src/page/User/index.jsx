@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Pagination from "../../util/pagination";
 import HMUtil from '../../util/hm.jsx';
 import User from "../../service/user-service";
+import TableList from "../../util/TableList";
 
 const hm = new HMUtil();
 const user = new User();
@@ -15,7 +16,7 @@ class UserList extends Component{
         this.state = {
             list : [],
             pageNum : 1,
-            firstLoading : true
+            // firstLoading : true
         }
     }
 
@@ -25,11 +26,7 @@ class UserList extends Component{
 
     loadUserList = () => {
         user.getUserList(this.state.pageNum).then((res)=>{
-            this.setState(res,()=>{
-                this.setState({
-                    firstLoading:false
-                })
-            });
+            this.setState(res);
         }).catch((errMsg)=>{
             this.setState({
                 list:[]
@@ -59,37 +56,12 @@ class UserList extends Component{
                 </tr>
             );
         });
-
-        let listError = (
-            <tr>
-                <td colSpan="5" className="text-center">
-                    {this.state.firstLoading ? 'Loading...' : 'No result'}
-                </td>
-            </tr>
-        );
-
-        let tableBody = this.state.list.length ? listBody : listError;
         return(
             <div id="page-wrapper">
                 <PageTitle title="User List"/>
-                <div className="row">
-                    <div className="col-md-12">
-                        <table className="table table-striped table-border">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Register Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                { tableBody }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <TableList tableHeads={["ID","Username","Email","Phone","Register Time",]}>
+                    {listBody}
+                </TableList>
                 <Pagination
                     current={this.state.pageNum}
                     total={this.state.total}
