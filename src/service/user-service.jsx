@@ -40,6 +40,16 @@ class User {
             url : 'http://admintest.happymmall.com/user/logout.do',
         })
     }
+
+    getUserList(pageNum){
+        return hm.request({
+            type : "post",
+            url  : 'http://admintest.happymmall.com/manage/product/list.do',
+            data : {
+                pageNum : pageNum
+            }
+        })
+    }
 }
 
 export default User;

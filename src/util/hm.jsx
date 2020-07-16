@@ -8,10 +8,12 @@ class HMUtil {
                 dataType : param.dataType || 'json',
                 data : param.data || null,
                 success : res => {
+                    console.log(res.status);
                     if(res.status === 0){
                         resolve(res.data,res.msg);
                     }else if(res.status === 10){
-                         this.doLogin();
+                        console.log('没登录')
+                         // this.doLogin();
                     }else {
                         reject(res.msg || res.data);
                     }
@@ -24,7 +26,7 @@ class HMUtil {
 
     }
     doLogin = () => {
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname) ;
+        window.location.href = '/login?redirect=' + window.location.pathname ;
     }
 
     // get url parameter
@@ -32,7 +34,7 @@ class HMUtil {
         let queryString = window.location.search.split('?')[1] || '',
             reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
             result = queryString.match(reg);
-        return result ? decodeURIComponent(result[2]) : null;
+        return result ? result[2] : null;
     }
 
     // error tips
