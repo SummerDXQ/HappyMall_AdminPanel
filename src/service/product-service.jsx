@@ -30,6 +30,17 @@ class Product {
             data : productInfo
         })
     }
+
+    //category
+    getCategoryList(parentCategoryId){
+        return hm.request({
+            type : "post",
+            url  : '/manage/category/get_category.do',
+            data : {
+                categoryId : parentCategoryId || 0
+            }
+        })
+    }
 }
 
 export default Product;
