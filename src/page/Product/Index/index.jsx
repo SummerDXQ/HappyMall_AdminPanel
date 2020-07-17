@@ -6,6 +6,7 @@ import Product from "../../../service/product-service";
 import TableList from "../../../util/TableList";
 import {Link} from 'react-router-dom';
 import './index.scss';
+import ListSearch from "./ListSearch";
 
 const hm = new HMUtil();
 const product = new Product();
@@ -17,7 +18,7 @@ class ProductList extends Component{
         this.state = {
             list : [],
             pageNum : 1,
-            // firstLoading : true
+            listType : 'list'
         }
     }
 
@@ -25,8 +26,18 @@ class ProductList extends Component{
         this.loadProductList();
     }
 
+    // load product list
     loadProductList = () => {
-        product.getProductList(this.state.pageNum).then((res)=>{
+        let listParam = {};
+        listParam.listType = this.state.listType;
+        listParam.pageNum = this.state.pageNum;
+        // search by keyword
+        if(this.state.listType === 'search'){
+            listParam.searchType = this.state.searchType;
+            listParam.keyword = this.state.searchKeyword;
+        }
+
+        product.getProductList(listParam).then((res)=>{
             this.setState(res);
         }).catch((errMsg)=>{
             this.setState({
@@ -36,12 +47,25 @@ class ProductList extends Component{
         })
     }
 
+    // search
+    onSearch = (searchType,searchKeyword) => {
+        let listType = searchKeyword === "" ? "list" : "search";
+        this.setState({
+            listType:listType,
+            pageNum : 1,
+            searchType : searchType,
+            searchKeyword : searchKeyword
+        },()=>{
+            this.loadProductList();
+        })
+    }
+
     // change page number
     onPageNumChange = (pageNum) =>{
         this.setState({
             pageNum : pageNum
         },()=>{
-            this.loadUserList();
+            this.loadProductList();
         })
     }
 
@@ -73,6 +97,7 @@ class ProductList extends Component{
         return(
             <div id="page-wrapper">
                 <PageTitle title="Product List"/>
+                <ListSearch onSearch={(searchType,searchKeyword)=>{this.onSearch(searchType,searchKeyword)}}/>
                 <TableList tableHeads={tableHeads}>
                     {
                         this.state.list.map((item,index)=>{

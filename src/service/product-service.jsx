@@ -4,13 +4,21 @@ const hm = new HMUtil();
 
 class Product {
     // get product list
-    getProductList(pageNum){
+    getProductList(listParam){
+        let url = '',
+            data = {};
+        if(listParam.listType === 'list'){
+            url =  '/manage/product/list.do';
+            data.pageNum = listParam.pageNum;
+        }else if (listParam.listType === 'search'){
+            url =  '/manage/product/search.do';
+            data.pageNum = listParam.pageNum;
+            data[listParam.searchType] = listParam.keyword;
+        }
         return hm.request({
             type : "post",
-            url  : '/manage/product/list.do',
-            data : {
-                pageNum : pageNum
-            }
+            url  : url,
+            data : data
         })
     }
 

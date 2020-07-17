@@ -29,7 +29,7 @@ class TableList extends Component{
         let listInfo = (
             <tr>
                 <td colSpan={this.props.tableHeads.length} className="text-center">
-                    {this.state.firstLoading ? 'Loading...' : 'No result'}
+                    {this.state.isFirstLoading ? 'Loading...' : 'No result'}
                 </td>
             </tr>
         );
