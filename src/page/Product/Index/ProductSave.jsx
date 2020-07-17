@@ -5,6 +5,7 @@ import PageTitle from "../../../component/PageTitle";
 import HMUtil from '../../../util/hm.jsx';
 import Product from "../../../service/product-service";
 import CategorySelector from "./CategorySelector";
+import FileUploader from "../../../util/FileUploader";
 
 const hm = new HMUtil();
 const product = new Product();
@@ -26,7 +27,7 @@ class ProductSave extends Component {
         return(
             <div id="page-wrapper">
                 <PageTitle title="Add product"/>
-                <form className="form-horizontal">
+                <div className="form-horizontal">
                     <div className="form-group">
                         <div className="row">
                             <label className="col-md-2 control-label">Product Name</label>
@@ -89,7 +90,7 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Image</label>
                             <div className="col-md-10">
-                                Image
+                                <FileUploader/>
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@ class ProductSave extends Component {
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         )
     }
