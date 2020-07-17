@@ -1,11 +1,10 @@
 import React,{Component} from 'react';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-// import Product from "./Index";
 import PageTitle from "../../../component/PageTitle";
 import HMUtil from '../../../util/hm.jsx';
 import Product from "../../../service/product-service";
 import CategorySelector from "./CategorySelector";
 import FileUploader from "../../../util/FileUploader";
+import './ProductSave.scss';
 
 const hm = new HMUtil();
 const product = new Product();
@@ -15,12 +14,37 @@ class ProductSave extends Component {
         super(props);
         this.state = {
             categoryId : 0,
-            parentCategoryId:0
+            parentCategoryId:0,
+            subImages : []
         }
     }
 
     onCategoryChange = (categoryId,parentCategoryId) => {
 
+    }
+
+    // upload image successfully
+    onUploadSuccess = (res) =>{
+        let subImages = this.state.subImages;
+        subImages.push(res);
+        this.setState({
+            subImages:subImages
+        })
+    }
+
+    // upload image fail
+    onUploadError = (errMsg) =>{
+        hm.errorTips(errMsg || 'Upload image fail');
+    }
+
+    // delete image
+    onImageDelete = (e) => {
+        let index = parseInt(e.target.getAttribute('index')),
+            subImage = this.state.subImages;
+        subImage.splice(index,1);
+        this.setState({
+            subImage : subImage
+        })
     }
 
     render() {
@@ -90,7 +114,26 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Image</label>
                             <div className="col-md-10">
-                                <FileUploader/>
+                                {
+                                    this.state.subImages.length > 0 ? this.state.subImages.map((item,index)=>{
+                                        return(
+                                            <div className="img-con" key={index}>
+                                                <img src={item.url} className='img'/>
+                                                <i
+                                                    className="fa fa-close"
+                                                    index = {index}
+                                                    onClick={(e)=>this.onImageDelete(e)}
+                                                />
+                                            </div>
+                                        )
+                                    }) : <div>Please upload image</div>
+                                }
+                            </div>
+                            <div className="col-md-10 file-upload-content">
+                                <FileUploader
+                                    onSuccess = { res => this.onUploadSuccess(res)}
+                                    onError = { err => this.onUploadError(err)}
+                                />
                             </div>
                         </div>
                     </div>

@@ -8,18 +8,13 @@ class FileUploader extends Component{
             fileFieldName:'upload_file',
             dataType:'json',
             chooseAndUpload:true,
-            uploadSuccess:(res)=>{
-                console.log(res)
-            },
-            uploadError:(err)=>{
-                console.log(err)
-            },
+            uploadSuccess: (res) => this.props.onSuccess(res.data),
+            uploadError: (res) => this.props.onError(res.message),
         }
-        /*Use FileUpload with options*/
-        /*Set two dom with ref*/
+
         return (
             <FileUpload options={options}>
-                <button ref="chooseAndUpload">choose image</button>
+                <button className="btn btn-xs btn-primary" ref="chooseAndUpload">choose image</button>
             </FileUpload>
         )
     }
