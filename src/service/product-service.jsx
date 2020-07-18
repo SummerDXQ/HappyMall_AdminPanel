@@ -22,6 +22,18 @@ class Product {
         })
     }
 
+    // get product detail
+    getProduct(productId){
+        return hm.request({
+            type : "post",
+            url  : '/manage/product/detail.do',
+            data : {
+                productId : productId || 0
+            }
+        })
+    }
+
+
     // change product status
     setProductStatus(productInfo){
         return hm.request({

@@ -14,6 +14,7 @@ class ProductSave extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id : this.props.match.params.pid,
             name:'',
             subtitle:'',
             categoryId : 0,
@@ -25,6 +26,30 @@ class ProductSave extends Component {
             status:1   // 1:available
         }
     }
+
+    componentDidMount() {
+        this.loadProduct()
+    }
+
+    loadProduct = () => {
+        // edict function
+        if (this.state.id){
+            product.getProduct(this.state.id).then(res => {
+                let images = res.subImages.split(',');
+                res.subImages = images.map(item => {
+                    return {
+                        uri : item,
+                        url : res.imageHost + item
+                    }
+                });
+                res.defaultDetail = res.detail;
+                this.setState(res);
+            }).catch(errMsg => {
+
+            })
+        }
+    }
+
 
     // product name,desc,price,stock change
     onValueChange = (e) => {
@@ -90,6 +115,9 @@ class ProductSave extends Component {
             status     : this.state.status,
         },
         productCheckResult = product.checkProduct(productInfo);
+        if (this.state.id){
+            productInfo.id = this.state.id;
+        }
         // success
         if(productCheckResult.status){
             product.saveProduct(productInfo).then((res)=>{
@@ -119,6 +147,7 @@ class ProductSave extends Component {
                                     className="form-control"
                                     placeholder="product name"
                                     name="name"
+                                    value={this.state.name}
                                     onChange={(e)=>{this.onValueChange(e)}}
                                 />
                             </div>
@@ -133,6 +162,7 @@ class ProductSave extends Component {
                                     className="form-control"
                                     placeholder="description"
                                     name="subtitle"
+                                    value={this.state.subtitle}
                                     onChange={(e)=>{this.onValueChange(e)}}
                                 />
                             </div>
@@ -143,6 +173,8 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Category</label>
                             <CategorySelector
+                                categoryId = {this.state.categoryId}
+                                parentCategoryId = {this.state.parentCategoryId}
                                 onCategoryChange={
                                     (categoryId,parentCategoryId)=>{this.onCategoryChange(categoryId,parentCategoryId)}
                                 }
@@ -160,11 +192,11 @@ class ProductSave extends Component {
                                         type="number"
                                         className="form-control"
                                         name="price"
+                                        value={this.state.price}
                                         onChange={(e)=>{this.onValueChange(e)}}
                                     />
                                     <span className="input-group-addon">.00</span>
                                 </div>
-
                             </div>
                         </div>
 
@@ -179,6 +211,7 @@ class ProductSave extends Component {
                                         className="form-control"
                                         placeholder="stock"
                                         name="stock"
+                                        value={this.state.stock}
                                         onChange={(e)=>{this.onValueChange(e)}}
                                     />
                                     <span className="input-group-addon">件</span>
@@ -218,7 +251,11 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Detail</label>
                             <div className="col-md-3">
-                                <RichEditor onValueChange={(value)=> this.onDetailValueChange(value)}/>
+                                <RichEditor
+                                    detail={this.state.detail}
+                                    defaultDetail={this.state.defaultDetail}
+                                    onValueChange={(value)=> this.onDetailValueChange(value)}
+                                />
                             </div>
                         </div>
                     </div>

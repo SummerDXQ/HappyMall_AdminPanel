@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import $ from 'jquery';
 import Simditor from 'simditor';
 import 'simditor/styles/simditor.scss';
+import './index.scss';
 
 class RichEditor extends Component{
     constructor(props) {
@@ -10,6 +11,12 @@ class RichEditor extends Component{
 
     componentDidMount() {
         this.loadEditor();
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if(this.props.defaultDetail !== nextProps.defaultDetail){
+            this.simditor.setValue(nextProps.defaultDetail);
+        }
     }
 
     loadEditor = () => {
