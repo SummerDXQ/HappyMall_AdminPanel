@@ -31,6 +31,57 @@ class Product {
         })
     }
 
+    // validate data
+    checkProduct = (product) =>{
+        let result = { status:true, msg:'Success' };
+        // check product name
+        if (typeof product.name !== 'string' || product.name.length ===0){
+            return {
+                status : false,
+                msg : 'Product name is required!'
+            }
+        }
+        // check subtitle
+        if (typeof product.subtitle !== 'string' || product.subtitle.length ===0){
+            return {
+                status : false,
+                msg : 'Product description is required!'
+            }
+        }
+        // check category ID
+        if (typeof product.categoryId !== 'number' || !(product.categoryId > 0)){
+            return {
+                status : false,
+                msg : 'Please select category'
+            }
+        }
+        // check price
+        if (typeof product.price !== 'number' || !(product.price >= 0)){
+            return {
+                status : false,
+                msg : 'Price is not correct!'
+            }
+        }
+        // check stock
+        if (typeof product.stock !== 'number' || !(product.stock >= 0)){
+            return {
+                status : false,
+                msg : 'Stock is not correct!'
+            }
+        }
+        return result;
+    }
+
+    // save product
+    saveProduct = (product) => {
+        console.log(product);
+        return hm.request({
+            type : "post",
+            url  : '/manage/product/save.do',
+            data : product
+        })
+    }
+
     //category
     getCategoryList(parentCategoryId){
         return hm.request({

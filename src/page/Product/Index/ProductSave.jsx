@@ -14,14 +14,32 @@ class ProductSave extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name:'',
+            subtitle:'',
             categoryId : 0,
             parentCategoryId:0,
-            subImages : []
+            subImages : [],
+            price:'',
+            stock:'',
+            detail:'',
+            status:1   // 1:available
         }
     }
 
-    onCategoryChange = (categoryId,parentCategoryId) => {
+    // product name,desc,price,stock change
+    onValueChange = (e) => {
+        let name = e.target.name,
+            value = e.target.value.trim();
+        this.setState({
+            [name] : value
+        })
+    }
 
+    onCategoryChange = (categoryId,parentCategoryId) => {
+        this.setState({
+            categoryId:categoryId,
+            parentCategoryId:parentCategoryId
+        })
     }
 
     // upload image successfully
@@ -55,6 +73,38 @@ class ProductSave extends Component {
         })
     }
 
+    getSubImagesString = () => {
+        return this.state.subImages.map((item)=>item.uri)
+    }
+
+    // submit info
+    onSubmit = () => {
+        let productInfo = {
+            name       : this.state.name,
+            subtitle   : this.state.subtitle,
+            categoryId : parseInt(this.state.categoryId),
+            subImages  : this.getSubImagesString().join(','),
+            detail     : this.state.detail,
+            price      : parseFloat(this.state.price),
+            stock      : parseInt(this.state.stock),
+            status     : this.state.status,
+        },
+        productCheckResult = product.checkProduct(productInfo);
+        // success
+        if(productCheckResult.status){
+            product.saveProduct(productInfo).then((res)=>{
+                hm.successTips(res);
+                this.props.history.push('/product/index');
+            }).catch((errMsg)=>{
+                hm.errorTips(errMsg)
+            });
+        }
+        // fail
+        else {
+            hm.errorTips(productCheckResult.msg);
+        }
+    }
+
     render() {
         return(
             <div id="page-wrapper">
@@ -64,7 +114,13 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Product Name</label>
                             <div className="col-md-5">
-                                <input type="text" className="form-control" placeholder="product name"/>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="product name"
+                                    name="name"
+                                    onChange={(e)=>{this.onValueChange(e)}}
+                                />
                             </div>
                         </div>
                     </div>
@@ -72,7 +128,13 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Description</label>
                             <div className="col-md-5">
-                                <input type="text" className="form-control" placeholder="description"/>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="description"
+                                    name="subtitle"
+                                    onChange={(e)=>{this.onValueChange(e)}}
+                                />
                             </div>
                         </div>
 
@@ -92,13 +154,14 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Price</label>
                             <div className="col-md-3">
-                                {/*<div className="input-group">*/}
-                                {/*    <input type="number" className="form-control" placeholder="price"/>*/}
-                                {/*    <span className="input-group-addon">元</span>*/}
-                                {/*</div>*/}
                                 <div className="input-group">
                                     <span className="input-group-addon">$</span>
-                                    <input type="text" className="form-control" />
+                                    <input
+                                        type="number"
+                                        className="form-control"
+                                        name="price"
+                                        onChange={(e)=>{this.onValueChange(e)}}
+                                    />
                                     <span className="input-group-addon">.00</span>
                                 </div>
 
@@ -111,7 +174,13 @@ class ProductSave extends Component {
                             <label className="col-md-2 control-label">Stock</label>
                             <div className="col-md-3">
                                 <div className="input-group">
-                                    <input type="number" className="form-control" placeholder="stock"/>
+                                    <input
+                                        type="number"
+                                        className="form-control"
+                                        placeholder="stock"
+                                        name="stock"
+                                        onChange={(e)=>{this.onValueChange(e)}}
+                                    />
                                     <span className="input-group-addon">件</span>
                                 </div>
                             </div>
@@ -155,7 +224,11 @@ class ProductSave extends Component {
                     </div>
                     <div className="form-group">
                         <div className="col-md-offset-2 col-md-10">
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button
+                                type="submit"
+                                className="btn btn-primary"
+                                onClick={(e)=>{this.onSubmit(e)}}
+                            >Submit</button>
                         </div>
                     </div>
                 </div>
