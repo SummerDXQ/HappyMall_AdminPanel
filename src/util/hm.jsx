@@ -8,7 +8,6 @@ class HMUtil {
                 dataType : param.dataType || 'json',
                 data : param.data || null,
                 success : res => {
-                    console.log(res.status);
                     if(res.status === 0){
                         resolve(res.data,res.msg);
                     }else if(res.status === 10){

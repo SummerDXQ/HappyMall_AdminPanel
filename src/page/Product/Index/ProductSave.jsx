@@ -5,6 +5,7 @@ import Product from "../../../service/product-service";
 import CategorySelector from "./CategorySelector";
 import FileUploader from "../../../util/FileUploader";
 import './ProductSave.scss';
+import RichEditor from "../../../util/RichEditor";
 
 const hm = new HMUtil();
 const product = new Product();
@@ -44,6 +45,13 @@ class ProductSave extends Component {
         subImage.splice(index,1);
         this.setState({
             subImage : subImage
+        })
+    }
+
+    // rich editor change
+    onDetailValueChange = (value) => {
+        this.setState({
+            detail : value
         })
     }
 
@@ -141,7 +149,7 @@ class ProductSave extends Component {
                         <div className="row">
                             <label className="col-md-2 control-label">Detail</label>
                             <div className="col-md-3">
-                                Detail
+                                <RichEditor onValueChange={(value)=> this.onDetailValueChange(value)}/>
                             </div>
                         </div>
                     </div>
