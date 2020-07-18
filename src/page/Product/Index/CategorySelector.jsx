@@ -68,6 +68,9 @@ class CategorySelector extends Component {
 
     // change first category
     onFirstCategoryChange = (e) =>{
+        if(this.props.readOnly){
+            return;
+        }
         let newValue = e.target.value || 0;
         this.setState({
             firstCategoryId : newValue,
@@ -82,6 +85,9 @@ class CategorySelector extends Component {
 
     // change second category
     onSecondCategoryChange = (e) => {
+        if(this.props.readOnly){
+            return;
+        }
         let newValue = e.target.value || 0;
         this.setState({
             secondCategoryId : newValue,
@@ -108,6 +114,7 @@ class CategorySelector extends Component {
                     className="form-control cate-select"
                     onChange={(e)=>{this.onFirstCategoryChange(e)}}
                     value={this.state.firstCategoryId}
+                    readOnly={this.props.readOnly}
                 >
                     <option value="">select-first</option>
                     {
@@ -122,6 +129,7 @@ class CategorySelector extends Component {
                             className="form-control cate-select"
                             value={this.state.secondCategoryId}
                             onChange={(e)=>{this.onSecondCategoryChange(e)}}
+                            readOnly={this.props.readOnly}
                         >
                             <option value="">select-second</option>
                             {

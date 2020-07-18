@@ -250,7 +250,7 @@ class ProductSave extends Component {
                     <div className="form-group">
                         <div className="row">
                             <label className="col-md-2 control-label">Detail</label>
-                            <div className="col-md-3">
+                            <div className="col-md-10">
                                 <RichEditor
                                     detail={this.state.detail}
                                     defaultDetail={this.state.defaultDetail}
