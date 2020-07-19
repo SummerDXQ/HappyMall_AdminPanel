@@ -18,7 +18,7 @@ class TableList extends Component{
         // table header
         let tableHeader = this.props.tableHeads.map((item,index) => {
             if(typeof item === 'object'){
-                return <th key={index} width={item.width}>{item}</th>
+                return <th key={index} width={item.width}>{item.name}</th>
             }else if(typeof item === 'string'){
                 return <th key={index}>{item}</th>
             }

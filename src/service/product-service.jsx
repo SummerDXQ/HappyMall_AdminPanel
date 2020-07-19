@@ -94,7 +94,7 @@ class Product {
         })
     }
 
-    //category
+    //get category list
     getCategoryList(parentCategoryId){
         return hm.request({
             type : "post",
@@ -102,6 +102,25 @@ class Product {
             data : {
                 categoryId : parentCategoryId || 0
             }
+        })
+    }
+
+    // add category
+    saveCategory(category){
+        return hm.request({
+            type : "post",
+            url  : '/manage/category/add_category.do',
+            data : category
+        })
+    }
+
+    // update category name
+    updateCategoryName(category){
+        // console.log(category)
+        return hm.request({
+            type : "post",
+            url  : '/manage/category/set_category_name.do',
+            data : category
         })
     }
 }

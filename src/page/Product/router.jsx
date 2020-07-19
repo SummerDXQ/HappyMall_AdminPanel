@@ -4,6 +4,7 @@ import Product from "./Index";
 import ProductSave from "./Index/ProductSave";
 import ProductDetail from "./Index/ProductDetail";
 import CategoryList from "./CategoryList";
+import AddCategory from "./CategoryList/AddCategory";
 
 class ProductRouter extends Component {
     render() {
@@ -13,6 +14,7 @@ class ProductRouter extends Component {
                 <Route path="/product/save/:pid?" component={ProductSave}/>
                 <Route path="/product/detail/:pid" component={ProductDetail}/>
                 <Route path="/product_category/index/:categoryId?" component={CategoryList}/>
+                <Route path="/product_category/add" component={AddCategory}/>
                 <Redirect exact from="/product" to="/product/index"/>
                 <Redirect exact from="/product_category" to="/product_category/index"/>
             </Switch>

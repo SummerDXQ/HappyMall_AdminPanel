@@ -56,7 +56,7 @@ class CategoryList extends Component{
         if (newName){
             product.updateCategoryName({
                 categoryId : categoryId,
-                categoryName : categoryName
+                categoryName : newName
             }).then(res => {
                 hm.successTips(res);
                 this.loadCategoryList();
@@ -92,7 +92,14 @@ class CategoryList extends Component{
         });
         return(
             <div id="page-wrapper">
-                <PageTitle title="Category List"/>
+                <PageTitle title="Category List">
+                    <div className="page-header-right">
+                        <Link to="/product_category/add" className="btn btn-primary">
+                            <i className="fa fa-plus"/>
+                            <span>Add Category</span>
+                        </Link>
+                    </div>
+                </PageTitle>
                 <div className="row">
                     <div className="col-md-12">
                         <p>Parent Category ID: {this.state.parentCategoryID}</p>
