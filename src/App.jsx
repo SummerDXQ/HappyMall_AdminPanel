@@ -15,7 +15,7 @@ class App extends Component {
               <Switch>
                   <Route exact path="/" component={Home}/>
                   <Route path="/product" component={ProductRouter}/>
-                  <Route path="/product_category" component={Home}/>
+                  <Route path="/product_category" component={ProductRouter}/>
                   <Route path="/order" component={Home}/>
                   <Route path="/user" component={UserList}/>
                   {/*<Redirect exact from='/user' to="/user/Index"/>*/}

@@ -136,7 +136,7 @@ class ProductSave extends Component {
     render() {
         return(
             <div id="page-wrapper">
-                <PageTitle title="Add product"/>
+                <PageTitle title={this.state.id ? 'Edit Product' : 'Add Product'}/>
                 <div className="form-horizontal">
                     <div className="form-group">
                         <div className="row">
