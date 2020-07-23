@@ -116,7 +116,7 @@ class CategorySelector extends Component {
                     value={this.state.firstCategoryId}
                     readOnly={this.props.readOnly}
                 >
-                    <option value="">select-first</option>
+                    <option value="">select-first-category</option>
                     {
                         this.state.firstCategoryList.map((item,index)=>{
                             return <option value={item.id} key={index}>{item.name}</option>
@@ -131,7 +131,7 @@ class CategorySelector extends Component {
                             onChange={(e)=>{this.onSecondCategoryChange(e)}}
                             readOnly={this.props.readOnly}
                         >
-                            <option value="">select-second</option>
+                            <option value="">select-second-category</option>
                             {
                                 this.state.secondCategoryList.map((item,index)=>{
                                     return <option value={item.id} key={index}>{item.name}</option>

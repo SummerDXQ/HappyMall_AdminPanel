@@ -72,7 +72,9 @@ class ProductList extends Component{
     // change product status
     onSetProductStatus = (e,productId,currentStatus) =>{
         let newStatus = currentStatus === 1 ? 2 : 1,
-            conformTips = currentStatus === 1 ? '确定要下架该商品？' : '确定要上架该商品？'
+            conformTips = currentStatus === 1
+                ? 'Do you want to pull it from the shelves?'
+                : 'Do you want to put it on shelves？'
         if(window.confirm(conformTips)){
             product.setProductStatus({
                 productId:productId,
@@ -89,9 +91,9 @@ class ProductList extends Component{
     render() {
         let tableHeads = [
             {name:'ID',width:'10%'},
-            {name:'Name',width:'50%'},
-            {name:'Price',width:'10%'},
-            {name:'Status',width:'15%'},
+            {name:'Name',width:'25%'},
+            {name:'Price',width:'20%'},
+            {name:'Status',width:'30%'},
             {name:'Operation',width:'15%'},
         ]
         return(
@@ -99,7 +101,7 @@ class ProductList extends Component{
                 <PageTitle title="Product List">
                     <div className="page-header-right">
                         <Link to="/product/save" className="btn btn-primary">
-                            <i className="fa fa-plus"/>
+                            <i className="fa fa-plus"/>&nbsp;
                             <span>Add Product</span>
                         </Link>
                     </div>
@@ -110,20 +112,20 @@ class ProductList extends Component{
                         this.state.list.map((item,index)=>{
                             return(
                                 <tr key={index}>
-                                    <td>{item.id}</td>
-                                    <td>
-                                        <p>{item.name}</p>
-                                        <p>{item.subtitle}</p>
+                                    <td className="text-center">{item.id}</td>
+                                    <td className="text-center">
+                                        {item.name}
+                                        {/*<p>{item.subtitle}</p>*/}
                                     </td>
-                                    <td>$ {item.price}</td>
-                                    <td>
-                                        <p>{item.status === 1 ? '在售' : '已下架'}</p>
+                                    <td className="text-center">$ {item.price}</td>
+                                    <td className="text-center">
+                                        <p className="status">{item.status === 1 ? 'Available' : 'Remove'}</p>
                                         <button
                                             onClick={(e)=>this.onSetProductStatus(e,item.id,item.status)}
-                                            className='btn btn-xs btn-warning'
-                                        >{item.status === 1 ? '下架' : '上架'}</button>
+                                            className='btn btn-xs'
+                                        >{item.status === 1 ? 'Remove' : 'Available'}</button>
                                     </td>
-                                    <td>
+                                    <td className="text-center">
                                         <Link className="operation" to={`/product/detail/${item.id}`}>Detail</Link>
                                         <Link className="operation" to={`/product/save/${item.id}`}>Edit</Link>
                                     </td>

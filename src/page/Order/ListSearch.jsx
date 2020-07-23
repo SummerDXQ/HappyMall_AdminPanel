@@ -1,12 +1,10 @@
 import React,{Component} from "react";
-import './listSearch.scss';
 
 class ListSearch extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            searchType : 'productId',
-            searchKeyword : ''
+            orderNumber : ''
         }
     }
 
@@ -21,7 +19,7 @@ class ListSearch extends Component{
 
     // click search button
     onSearch = () =>{
-        this.props.onSearch(this.state.searchType, this.state.searchKeyword);
+        this.props.onSearch(this.state.orderNumber);
     }
 
     onSearchKeywordKeyUp = (e) => {
@@ -38,25 +36,22 @@ class ListSearch extends Component{
                         <div className="form-group">
                             <select
                                 className="form-control"
-                                name="searchType"
-                                onChange={(e) => this.onValueChange(e)}
                             >
                                 <option value="productId">search by ID</option>
-                                <option value="productName">search by name</option>
                             </select>
                         </div>
                         <div className="form-group">
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="keyword"
-                                name="searchKeyword"
+                                placeholder="order number"
+                                name="orderNumber"
                                 onKeyUp={(e) => this.onSearchKeywordKeyUp(e)}
                                 onChange={(e) => this.onValueChange(e)}
                             />
                         </div>
                         <button
-                            className="btn"
+                            className="btn btn-primary"
                             onClick={(e) => this.onSearch()}
                         >
                             Search

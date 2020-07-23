@@ -48,11 +48,11 @@ class UserList extends Component{
         let listBody = this.state.list.map((item,index)=>{
             return(
                 <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.username}</td>
-                    <td>{item.email}</td>
-                    <td>{item.phone}</td>
-                    <td>{new Date(item.createTime).toLocaleString()}</td>
+                    <td className="text-center">{item.id}</td>
+                    <td className="text-center">{item.username}</td>
+                    <td className="text-center">{item.email}</td>
+                    <td className="text-center">{item.phone}</td>
+                    <td className="text-center">{new Date(item.createTime).toLocaleString()}</td>
                 </tr>
             );
         });

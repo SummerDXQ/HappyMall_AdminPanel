@@ -83,14 +83,12 @@ class ProductDetail extends Component {
                             <label className="col-md-2 control-label">Price</label>
                             <div className="col-md-3">
                                 <div className="input-group">
-                                    <span className="input-group-addon">$</span>
                                     <input
                                         readOnly
                                         type="number"
                                         className="form-control"
                                         value={this.state.price}
                                     />
-                                    <span className="input-group-addon">.00</span>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +105,6 @@ class ProductDetail extends Component {
                                         className="form-control"
                                         value={this.state.stock}
                                     />
-                                    <span className="input-group-addon">件</span>
                                 </div>
                             </div>
                         </div>

@@ -187,15 +187,14 @@ class ProductSave extends Component {
                             <label className="col-md-2 control-label">Price</label>
                             <div className="col-md-3">
                                 <div className="input-group">
-                                    <span className="input-group-addon">$</span>
                                     <input
                                         type="number"
                                         className="form-control"
+                                        placeholder='price'
                                         name="price"
                                         value={this.state.price}
                                         onChange={(e)=>{this.onValueChange(e)}}
                                     />
-                                    <span className="input-group-addon">.00</span>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +213,6 @@ class ProductSave extends Component {
                                         value={this.state.stock}
                                         onChange={(e)=>{this.onValueChange(e)}}
                                     />
-                                    <span className="input-group-addon">件</span>
                                 </div>
                             </div>
                         </div>
@@ -239,12 +237,14 @@ class ProductSave extends Component {
                                     }) : <div>Please upload image</div>
                                 }
                             </div>
-                            <div className="col-md-10 file-upload-content">
-                                <FileUploader
-                                    onSuccess = { res => this.onUploadSuccess(res)}
-                                    onError = { err => this.onUploadError(err)}
-                                />
-                            </div>
+                            {/*<div className="row">*/}
+                                <div className="col-md-10 file-upload-content">
+                                    <FileUploader
+                                        onSuccess = { res => this.onUploadSuccess(res)}
+                                        onError = { err => this.onUploadError(err)}
+                                    />
+                                </div>
+                            {/*</div>*/}
                         </div>
                     </div>
                     <div className="form-group">
@@ -260,10 +260,10 @@ class ProductSave extends Component {
                         </div>
                     </div>
                     <div className="form-group">
-                        <div className="col-md-offset-2 col-md-10">
+                        <div className="col-md-1 submit">
                             <button
                                 type="submit"
-                                className="btn btn-primary"
+                                className="btn"
                                 onClick={(e)=>{this.onSubmit(e)}}
                             >Submit</button>
                         </div>

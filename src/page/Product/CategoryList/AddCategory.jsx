@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import HMUtil from '../../../util/hm.jsx';
 import Product from "../../../service/product-service";
 import TableList from "../../../util/TableList";
+import './index.scss';
 
 const hm = new HMUtil();
 const product = new Product();

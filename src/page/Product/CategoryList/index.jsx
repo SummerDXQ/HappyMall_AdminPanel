@@ -19,6 +19,7 @@ class CategoryList extends Component{
     }
 
     componentDidMount() {
+        console.log('componentDidMount');
         this.loadCategoryList();
     }
 
@@ -58,7 +59,7 @@ class CategoryList extends Component{
                 categoryId : categoryId,
                 categoryName : newName
             }).then(res => {
-                hm.successTips(res);
+                hm.successTips("Successfully update category name!");
                 this.loadCategoryList();
             }).catch(errMsg => {
                 hm.errorTips(errMsg);
@@ -68,22 +69,24 @@ class CategoryList extends Component{
 
 
     render() {
-        console.log('render');
+        let tableHeads = [
+            {name:'ID',width:'30%'},
+            {name:'Category Name',width:'30%'},
+            {name:'Operation',width:'40%'},
+        ];
+
         let listBody = this.state.list.map((item,index)=>{
             return(
                 <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>
-                        <a
-                            href="" className="operation"
-                            onClick={()=>this.onUpdateName(item.id,item.name)}
-                        >
-                            Update Name
-                        </a>
+                    <td className="text-center">{item.id}</td>
+                    <td className="text-center">{item.name}</td>
+                    <td className="text-center">
+                        {/*<a href="" className="operation">*/}
+                            <button className="btn operation" onClick={()=>this.onUpdateName(item.id,item.name)}>Update Name</button>
+                        {/*</a>*/}
                         {
                             item.parentId === 0
-                                ? <Link to={`/product_category/index/${item.id}`}>Children</Link>
+                                ? <Link to={`/product_category/index/${item.id}`}><button className="btn">Children</button></Link>
                                 : null
                         }
                     </td>
@@ -95,17 +98,17 @@ class CategoryList extends Component{
                 <PageTitle title="Category List">
                     <div className="page-header-right">
                         <Link to="/product_category/add" className="btn btn-primary">
-                            <i className="fa fa-plus"/>
+                            <i className="fa fa-plus"/>&nbsp;
                             <span>Add Category</span>
                         </Link>
                     </div>
                 </PageTitle>
                 <div className="row">
                     <div className="col-md-12">
-                        <p>Parent Category ID: {this.state.parentCategoryID}</p>
+                        <p>Parent Category ID: <span className="parentId">{this.state.parentCategoryID}</span></p>
                     </div>
                 </div>
-                <TableList tableHeads={["ID","Category Name","Operation"]}>
+                <TableList tableHeads={tableHeads}>
                     {listBody}
                 </TableList>
             </div>

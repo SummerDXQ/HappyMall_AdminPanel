@@ -40,7 +40,7 @@ class Home extends Component{
                             <p className="count">{this.state.userCount}</p>
                             <p className="desc">
                                 <i className="fa fa-user-o"/>
-                                <span>User</span>
+                                <span>User Quantity</span>
                             </p>
                         </Link>
                     </div>
@@ -49,7 +49,7 @@ class Home extends Component{
                             <p className="count">{this.state.productCount}</p>
                             <p className="desc">
                                 <i className="fa fa-list"/>
-                                <span>Product</span>
+                                <span>Product Quantity</span>
                             </p>
                         </Link>
                     </div>
@@ -58,7 +58,7 @@ class Home extends Component{
                             <p className="count">{this.state.orderCount}</p>
                             <p className="desc">
                                 <i className="fa fa-check-square-o"/>
-                                <span>Order</span>
+                                <span>Order Quantity</span>
                             </p>
                         </Link>
                     </div>

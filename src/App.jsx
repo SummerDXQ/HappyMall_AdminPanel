@@ -6,6 +6,8 @@ import Login from "./page/Login";
 import Error from "./page/Error";
 import UserList from "./page/User";
 import ProductRouter from "./page/Product/router";
+import OrderList from "./page/Order";
+import OrderDetail from "./page/Order/OrderDetail";
 
 class App extends Component {
 
@@ -16,9 +18,10 @@ class App extends Component {
                   <Route exact path="/" component={Home}/>
                   <Route path="/product" component={ProductRouter}/>
                   <Route path="/product_category" component={ProductRouter}/>
-                  <Route path="/order" component={Home}/>
+                  <Route path="/order/index" component={OrderList}/>
+                  <Route path="/order/detail/:orderNumber" component={OrderDetail}/>
                   <Route path="/user" component={UserList}/>
-                  {/*<Redirect exact from='/user' to="/user/Index"/>*/}
+                  <Redirect exact from='/order' to="/order/index"/>
                   <Route component={Error}/>
               </Switch>
           </Layout>

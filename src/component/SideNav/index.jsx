@@ -21,10 +21,10 @@ class SideNav extends Component{
                                 </Link>
                                 <ul className="nav nav-second-level collapse in">
                                     <li>
-                                        <NavLink to="/product" activeClassName="active-menu">Product</NavLink>
+                                        <NavLink to="/product" activeClassName="active-menu">Product Management</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/product_category" activeClassName="active-menu">Category</NavLink>
+                                        <NavLink to="/product_category" activeClassName="active-menu">Category Management</NavLink>
                                     </li>
                                 </ul>
                             </li>
@@ -36,7 +36,7 @@ class SideNav extends Component{
                                 </Link>
                                 <ul className="nav nav-second-level collapse in">
                                     <li>
-                                        <NavLink to="/order" activeClassName="active-menu">Order</NavLink>
+                                        <NavLink to="/order" activeClassName="active-menu">Order Management</NavLink>
                                     </li>
                                 </ul>
                             </li>
@@ -48,7 +48,7 @@ class SideNav extends Component{
                                 </Link>
                                 <ul className="nav nav-second-level collapse in">
                                     <li>
-                                        <NavLink to="/user" activeClassName="active-menu">User</NavLink>
+                                        <NavLink to="/user" activeClassName="active-menu">User Management</NavLink>
                                     </li>
                                 </ul>
                             </li>

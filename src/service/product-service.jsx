@@ -116,7 +116,6 @@ class Product {
 
     // update category name
     updateCategoryName(category){
-        // console.log(category)
         return hm.request({
             type : "post",
             url  : '/manage/category/set_category_name.do',

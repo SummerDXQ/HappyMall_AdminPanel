@@ -1,9 +1,21 @@
+.page-header-right{
+    top:15px;
+}
 .operation{
     margin-right: 5px;
+    color: #2DAFCB;
+    &:hover{
+        text-decoration: none;
+        color: #212529;
+    }
 }
 .search-wrap{
     margin-bottom: 20px;
     .form-group{
         margin-right: 10px;
     }
+}
+.status{
+    display: inline;
+    margin-right: 5px;
 }

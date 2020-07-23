@@ -63,7 +63,7 @@ class Login extends Component{
         return(
             <div className="col-md-4 panel-container">
                     <div className="panel panel-default login-panel">
-                        <div className="panel-heading">welcome - Happy Mall</div>
+                        <div className="panel-heading">Welcome to Happy Mall</div>
                         <div className="panel-body">
                             <div>
                                 <div className="form-group">
@@ -85,10 +85,10 @@ class Login extends Component{
                                     />
                                 </div>
                                 <button
-                                    className="btn btn-lg btn-primary btn-block"
+                                    className="btn btn-lg btn-block"
                                     onClick={e => {this.onSubmit(e)}}
                                 >
-                                    登录
+                                    LOGIN
                                 </button>
                             </div>
                         </div>

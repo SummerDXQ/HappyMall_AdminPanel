@@ -8,7 +8,6 @@ class Statistics {
             url : 'http://admintest.happymmall.com/manage/statistic/base_count.do',
         })
     }
-
 }
 
 export default Statistics;

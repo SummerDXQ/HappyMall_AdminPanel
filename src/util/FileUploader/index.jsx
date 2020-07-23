@@ -14,7 +14,7 @@ class FileUploader extends Component{
 
         return (
             <FileUpload options={options}>
-                <button className="btn btn-xs btn-primary" ref="chooseAndUpload">choose image</button>
+                <button className="btn" ref="chooseAndUpload">choose image</button>
             </FileUpload>
         )
     }
